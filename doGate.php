@@ -15,7 +15,7 @@ $vysledek_overeni_pocet = mysqli_num_rows($vysledek_overeni);
 if ($vysledek_overeni_pocet == 1)
 {
    
-    $sql_zmena = "UPDATE stavy set hodnota = 69 where typ='gate'";
+    $sql_zmena = "UPDATE stavy set hodnota = 69 where typ='gate' and hodnota not in (3,4)";
     $rs = mysqli_query($mysqli, $sql_zmena);
    
     echo "Changing";

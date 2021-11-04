@@ -16,6 +16,13 @@
 <input type="submit" id="submit" name="submit">
 </form>
 
+<form id="stater" action="">
+<input type="number" name="pin">
+<input type="number" name="stav">
+<input type="text" name="typ">
+<input type="submit" id="submit" name="submit">
+</form>
+
 
 <div id="states">
 </div>
@@ -25,18 +32,9 @@
 
 <script>
   $('document').ready(function() {
-//    $.ajax({
-//        url: 'printState.php',
-//        post: 'GET'
-//    }).done(function(result) {
-//        $('#states').html('<p>' + result + '</p>');
-//    });
 $("#states").load("printState.php");
-
 });
-
 </script>
-
 
 <script>
 $('#gate').on("submit",function(e) {
@@ -46,7 +44,6 @@ $('#gate').on("submit",function(e) {
       url: "doGate.php",
       data: post_data,
       success: function(data){
-       /* alert(data.result);*/
         $('#logger').html(data.result);
       }
   });
@@ -61,7 +58,21 @@ $('#garage').on("submit",function(e) {
       url: "doGarage.php",
       data: post_data,
       success: function(data){
-       /* alert(data.result);*/
+        $('#logger').html(data.result);
+      }
+  });
+  e.preventDefault();
+});
+
+
+
+$('#stater').on("submit",function(e) {
+  var post_data = $('#stater').serialize();
+  $.ajax({
+      type: "POST",
+      url: "writeNewState.php",
+      data: post_data,
+      success: function(data){
         $('#logger').html(data.result);
       }
   });
